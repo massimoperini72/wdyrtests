@@ -24,17 +24,17 @@ class AppOO extends React.Component<Props, IState> {
     }
   }
 
-  private handleClick = (): void => {
-    /*
-    this.setState({
-      counter: this.state.counter + 1
-    });
-     */
+  private handleClick = (same: boolean): void => {
+    let newValue: number;
+    if (same)
+      newValue = this.state.counter;
+    else
+      newValue = this.state.counter + 1;
     // Including the preState object with spread syntax is not an issue.
     // It only changes the specified variable.
     this.setState((prevState: IState) => ({
       ...prevState,
-      counter: this.state.counter + 1
+      counter: newValue
     }));
   }
 
@@ -42,7 +42,9 @@ class AppOO extends React.Component<Props, IState> {
     return (
       <div className="App">
         <h2>I'm the class component</h2>
-        <button onClick={this.handleClick}>Click me</button>
+        <button onClick={() => this.handleClick(true)}>Click me (same value)</button>
+        <br /><br />
+        <button onClick={() => this.handleClick(false)}>Click me (increment)</button>
         <div>Counter: {this.state.counter}</div>
       </div>
     );
