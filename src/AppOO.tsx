@@ -38,14 +38,36 @@ class AppOO extends React.Component<Props, IState> {
     }));
   }
 
+  private handleClickCorrect = (): void => {
+    // Let's say we receive a new value for this variable and the value
+    // is the same as the existing state.
+    // I'm forcing the same value for testing.
+    const newValue = this.state.counter;
+
+    if (newValue !== this.state.counter) {
+      this.setState((prevState: IState) => ({
+        ...prevState,
+        counter: newValue
+      }));
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h2>I'm the class component</h2>
-        <button onClick={() => this.handleClick(true)}>Click me (same value)</button>
+        <button onClick={() => this.handleClick(true)}>
+          Click me (same value)
+        </button>
         <br /><br />
-        <button onClick={() => this.handleClick(false)}>Click me (increment)</button>
-        <div>Counter: {this.state.counter}</div>
+        <button className='buttonCorrect' onClick={this.handleClickCorrect}>
+          Click me (same value, correct way)
+        </button>
+        <br /><br />
+        <button onClick={() => this.handleClick(false)}>
+          Click me (increment)
+        </button>
+        <div className='counter'>Counter: {this.state.counter}</div>
       </div>
     );
   }

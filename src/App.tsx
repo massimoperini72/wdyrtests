@@ -32,7 +32,7 @@ function App() {
       <button onClick={() => handleClick(true)}>Click me (same value)</button>
       <br /><br />
       <button onClick={() => handleClick(false)}>Click me (increment)</button>
-      <div>Counter: {state.counter}</div>
+      <div className='counter'>Counter: {state.counter}</div>
     </div>
   );
 }
